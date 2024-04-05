@@ -80,17 +80,17 @@ export const TaskItem: React.FC<TaskItemProps> = ({
           <TouchableOpacity
             testID={`marker-${index}`}
             style={task.done ? styles.taskMarkerDone : styles.taskMarker}
-            // onPress={() => toggleTaskDone(task.id)}
+            onPress={() => toggleTaskDone(task.id)}
           >
             {task.done && <Feather name="check" size={12} color="#FFF" />}
           </TouchableOpacity>
           <TextInput
             ref={textInputRef}
             style={task.done ? styles.taskTextDone : styles.taskText}
-            // editable={isEditing}
-            // onChangeText={setEditingTaskText}
+            editable={isEditing}
+            onChangeText={setEditingTaskText}
             value={editingTaskText}
-            // onSubmitEditing={handleSubmitEditing}
+            onSubmitEditing={handleSubmitEditing}
           />
         </TouchableOpacity>
       </View>
@@ -107,8 +107,9 @@ export const TaskItem: React.FC<TaskItemProps> = ({
         >
           {!isEditing ? (
             <Image source={editIcon} />
-          ) : // <Feather name="x" size={24} color="#bbb" />
-          null}
+          ) : (
+            <Feather name="x" size={24} color="#bbb" />
+          )}
         </TouchableOpacity>
         <TouchableOpacity
           testID={`trash-${index}`}
@@ -116,10 +117,9 @@ export const TaskItem: React.FC<TaskItemProps> = ({
             paddingLeft: 12,
             paddingRight: 24,
           }}
-          // onPress={() => handleRemoveTask(task.id)}
+          onPress={() => handleRemoveTask(task.id)}
         >
-          {/* <Image style={{ opacity: isEditing ? 0.4 : 1 }} source={trashIcon} /> */}
-          <Image source={trashIcon} />
+          <Image style={{ opacity: isEditing ? 0.4 : 1 }} source={trashIcon} />
         </TouchableOpacity>
       </View>
     </>
